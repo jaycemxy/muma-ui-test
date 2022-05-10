@@ -1,15 +1,16 @@
 <template>
-  <div>hello</div>
-  <Joyce/>
+  <div>导航栏 | 
+    <router-link to="/">Joyce</router-link> |
+    <router-link to="/xxx">Joyce2</router-link>
+  </div>
+  <hr/>
+  <router-view />
 </template>
 
 <script>
-import Joyce from './components/Joyce.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    Joyce
-  }
 }
 </script>
