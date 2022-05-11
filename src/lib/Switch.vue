@@ -26,6 +26,9 @@ import { ref } from 'vue'
         background: gray;
         border-radius: $h/2;
     }
+    button:focus {
+        outline: none;
+    }
     span {
         position: absolute;
         top: 2px;
@@ -34,6 +37,7 @@ import { ref } from 'vue'
         width: $h2;
         background: white;
         border-radius: $h2/2;
+        transition: left 250ms;
     }
 
     button.checked{
