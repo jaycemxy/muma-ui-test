@@ -8,7 +8,8 @@ import { ref, provide } from 'vue'
 export default {
   name: 'App',
   setup(){
-    const asideVisible = ref(false)
+    const width = document.documentElement.clientWidth;
+    const asideVisible = ref(width <= 500 ? false:true)  // 通过获取页面宽度，决定 asideVisible变量 的初始值为true或false
     provide('asideVisible', asideVisible)
   }
 }
