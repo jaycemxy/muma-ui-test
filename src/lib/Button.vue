@@ -71,8 +71,9 @@ $radius: 4px;
         margin-left: 8px;
     }
     &:hover, &:focus {
-        color: $blue;
+        color: white;
         border-color: $blue;
+        background: $blue
     }
     &:focus {
         outline: none;
