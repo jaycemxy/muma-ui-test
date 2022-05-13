@@ -3,10 +3,12 @@
         <div class="gulu-dialog-overlay" @click="onClickOverlay"></div>
         <div class="gulu-dialog-wrapper">
             <div class="gulu-dialog">
-                <header>标题<span @click="close" class="gulu-dialog-close"></span></header>
+                <header>
+                    {{title}}
+                    <span @click="close" class="gulu-dialog-close"></span>
+                </header>
                 <main>
-                    <p>第一行字</p>
-                    <p>第二行字</p>
+                    <slot/>
                 </main>
                 <footer>
                     <Button @click="ok">OK</Button>
@@ -22,6 +24,10 @@ import Button from './Button.vue'
 
 export default {
     props: {
+        title: {
+            type: String,
+            default: '自定义标题'
+        },
         visible: {
             type: Boolean,
             default: false
