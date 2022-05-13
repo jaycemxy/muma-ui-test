@@ -1,17 +1,16 @@
 <template>
-    <div :size="size">
-        <button v-bind="rest">
-            <slot />
-        </button>
-    </div>
+    <button class="gulu-button" :class="`现在的主题是 - ${theme}`">
+        <slot />
+    </button>
 </template>
 
 <script lang="ts">
 export default {
-    inheritAttrs: false,
-    setup(props,context){
-        const {size, ...rest} = context.attrs  // 除了size，其他变量都放在rest里
-        return {size,rest}
+    props: {
+        theme: {
+            type: String,
+            default: 'button'
+        }
     }
 }
 </script>
