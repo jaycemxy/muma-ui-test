@@ -2,9 +2,11 @@
 <div class="gulu-tabs">
     <div class="gulu-tabs-nav">
         <div class="gulu-tabs-nav-item" :class="{selected: t===selected}"
-            v-for="(t,index) in titles" :key="index" @click="select(t)">
+            v-for="(t,index) in titles" :key="index" @click="select(t)"
+            :ref="el => {if (el) navItems[index] = el}">
             {{t}}
         </div>
+        <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="gulu-tabs-content">
         <component class="gulu-tabs-content-item" :class="{selected: c.props.title === selected}"
@@ -15,7 +17,7 @@
 
 <script lang="ts">
 import Tab from './Tab.vue'
-import {computed} from 'vue'
+import {computed, ref, onMounted} from 'vue'
 
 export default {
     props: {
@@ -24,6 +26,19 @@ export default {
         }
     },
     setup(props,context) {
+        const navItems = ref<HTMLDivElement[]>([])  // ref<...>  这里是TypeScript的语法，表示传入的参数是一个HTMLDiv元素的数组
+        const indicator = ref<HTMLDivElement>(null)  // 获取到选中条
+        onMounted(()=>{
+            // console.log(...navItems.value)  // 获取导航里的所有div
+            const divs = navItems.value
+            const result = divs.filter(div => div.classList.contains('selected'))[0]
+            // 另一种用find的写法，但在一些老的浏览器上不支持
+            // const result = divs.find(div => div.classList.contains('selected')
+            console.log(result)
+            const {width} = result.getBoundingClientRect()  // 获取到元素宽度
+            indicator.value.style.width = width + 'px'
+        })
+
         const defaults = context.slots.default()
         // console.log(defaults[0].type === Tab)  检查子组件的类型是否为Tab
         defaults.forEach((tag)=>{
@@ -46,7 +61,9 @@ export default {
             defaults,
             titles,
             current,
-            select
+            select,
+            navItems,
+            indicator
         }
     }
 }
@@ -62,6 +79,7 @@ $border-color: #d9d9d9;
         display: flex;
         color: $color;
         border-bottom: 1px solid $border-color;
+        position: relative;
 
         &-item {
             padding: 8px 0;
@@ -75,6 +93,15 @@ $border-color: #d9d9d9;
                 color: $blue;
             }
         }
+        &-indicator {
+            position:absolute;
+            height: 3px;
+            background: $blue;
+            left: 0;
+            bottom: -1px;
+            width: 100px;
+        }
+
     }
     &-content {
         padding: 8px 0;
