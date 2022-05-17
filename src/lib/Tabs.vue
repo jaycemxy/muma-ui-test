@@ -1,6 +1,6 @@
 <template>
 <div class="gulu-tabs">
-    <div class="gulu-tabs-nav">
+    <div class="gulu-tabs-nav" ref="container">
         <div class="gulu-tabs-nav-item" :class="{selected: t===selected}"
             v-for="(t,index) in titles" :key="index" @click="select(t)"
             :ref="el => {if (el) navItems[index] = el}">
@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import Tab from './Tab.vue'
-import {computed, ref, onMounted} from 'vue'
+import {computed, ref, onMounted, onUpdated} from 'vue'
 
 export default {
     props: {
@@ -28,7 +28,8 @@ export default {
     setup(props,context) {
         const navItems = ref<HTMLDivElement[]>([])  // ref<...>  这里是TypeScript的语法，表示传入的参数是一个HTMLDiv元素的数组
         const indicator = ref<HTMLDivElement>(null)  // 获取到选中条
-        onMounted(()=>{
+        const container = ref<HTMLDivElement>(null)
+        const x = () => {
             // console.log(...navItems.value)  // 获取导航里的所有div
             const divs = navItems.value
             const result = divs.filter(div => div.classList.contains('selected'))[0]
@@ -37,7 +38,15 @@ export default {
             console.log(result)
             const {width} = result.getBoundingClientRect()  // 获取到元素宽度
             indicator.value.style.width = width + 'px'
-        })
+
+            const {left:left1} = container.value.getBoundingClientRect()
+            const {left: left2} = result.getBoundingClientRect()
+            const left = left2 - left1
+            indicator.value.style.left = left + 'px'
+        }
+        onMounted(x)  // 只在第一次渲染时执行
+
+        onUpdated(x)  // 用户操作后重新渲染页面
 
         const defaults = context.slots.default()
         // console.log(defaults[0].type === Tab)  检查子组件的类型是否为Tab
@@ -63,7 +72,8 @@ export default {
             current,
             select,
             navItems,
-            indicator
+            indicator,
+            container
         }
     }
 }
@@ -100,6 +110,7 @@ $border-color: #d9d9d9;
             left: 0;
             bottom: -1px;
             width: 100px;
+            transition: all 250ms;
         }
 
     }
