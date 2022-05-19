@@ -3,7 +3,7 @@
     <div class="gulu-tabs-nav" ref="container">
         <div class="gulu-tabs-nav-item" :class="{selected: t===selected}"
             v-for="(t,index) in titles" :key="index" @click="select(t)"
-            :ref="el => {if (el) navItems[index] = el}">
+            :ref="el => {if (t===selected )selectedItem = el }">
             {{t}}
         </div>
         <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
@@ -26,21 +26,15 @@ export default {
         }
     },
     setup(props,context) {
-        const navItems = ref<HTMLDivElement[]>([])  // ref<...>  这里是TypeScript的语法，表示传入的参数是一个HTMLDiv元素的数组
+        const selectedItem = ref<HTMLDivElement>(null)  // ref<...> typeScript的语法，表示传入的参数是一个HTMLDiv元素的数组
         const indicator = ref<HTMLDivElement>(null)  // 获取到选中条
         const container = ref<HTMLDivElement>(null)
         const x = () => {
-            // console.log(...navItems.value)  // 获取导航里的所有div
-            const divs = navItems.value
-            const result = divs.filter(div => div.classList.contains('selected'))[0]
-            // 另一种用find的写法，但在一些老的浏览器上不支持
-            // const result = divs.find(div => div.classList.contains('selected')
-            console.log(result)
-            const {width} = result.getBoundingClientRect()  // 获取到元素宽度
+            const {width} = selectedItem.value.getBoundingClientRect()  // 获取到元素宽度
             indicator.value.style.width = width + 'px'
 
             const {left:left1} = container.value.getBoundingClientRect()
-            const {left: left2} = result.getBoundingClientRect()
+            const {left: left2} = selectedItem.value.getBoundingClientRect()
             const left = left2 - left1
             indicator.value.style.left = left + 'px'
         }
@@ -71,7 +65,7 @@ export default {
             titles,
             current,
             select,
-            navItems,
+            selectedItem,
             indicator,
             container
         }
