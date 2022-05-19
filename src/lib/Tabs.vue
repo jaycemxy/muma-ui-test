@@ -9,15 +9,14 @@
         <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="gulu-tabs-content">
-        <component class="gulu-tabs-content-item" :class="{selected: c.props.title === selected}"
-                v-for="(c,index) in defaults" :is="c" :key="index"/>
+        <component :is="current" :key="current.props.title"/>
     </div>
 </div>
 </template>
 
 <script lang="ts">
 import Tab from './Tab.vue'
-import {computed, ref, onMounted, onUpdated} from 'vue'
+import {computed, ref, onMounted, watchEffect} from 'vue'
 
 export default {
     props: {
@@ -29,30 +28,30 @@ export default {
         const selectedItem = ref<HTMLDivElement>(null)  // ref<...> typeScript的语法，表示传入的参数是一个HTMLDiv元素的数组
         const indicator = ref<HTMLDivElement>(null)  // 获取到选中条
         const container = ref<HTMLDivElement>(null)
-        const x = () => {
-            const {width} = selectedItem.value.getBoundingClientRect()  // 获取到元素宽度
-            indicator.value.style.width = width + 'px'
+        // onMounted(x)  // 只在第一次渲染时执行
+        // onUpdated(x)  // 用户操作后重新渲染、更新页面
+        onMounted(()=>{
+            watchEffect(()=>{
+                const {width} = selectedItem.value.getBoundingClientRect()  // 获取元素宽度
+                indicator.value.style.width = width + 'px'
 
-            const {left:left1} = container.value.getBoundingClientRect()
-            const {left: left2} = selectedItem.value.getBoundingClientRect()
-            const left = left2 - left1
-            indicator.value.style.left = left + 'px'
-        }
-        onMounted(x)  // 只在第一次渲染时执行
+                const {left:left1} = container.value.getBoundingClientRect()
+                const {left: left2} = selectedItem.value.getBoundingClientRect()
+                const left = left2 - left1
+                indicator.value.style.left = left + 'px'
+            })
+        })
 
-        onUpdated(x)  // 用户操作后重新渲染页面
 
-        const defaults = context.slots.default()
+        const defaults = context.slots.default()  // 用JS获取插槽内容
         // console.log(defaults[0].type === Tab)  检查子组件的类型是否为Tab
         defaults.forEach((tag)=>{
             if(tag.type !== Tab){
                 throw new Error('Tabs子标签必须是Tab')
             }
         })
-        const current = computed(()=>{
-            return defaults.filter((tag)=>{
-                return tag.props.title === props.selected
-            })[0]
+        const current = computed(() => {
+            return defaults.find(tag => tag.props.title === props.selected)
         })
         const titles = defaults.map((tag)=>{
             return tag.props.title
@@ -110,13 +109,6 @@ $border-color: #d9d9d9;
     }
     &-content {
         padding: 8px 0;
-        
-        &-item {
-            display: none;
-            &.selected {
-                display: block;
-            }
-        }
     }
 }
 </style>
