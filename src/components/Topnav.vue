@@ -1,29 +1,38 @@
 <template>
     <div class="topnav">
-        <div class="logo">
+        <router-link to="/" class="logo">
           <svg class="icon">
             <use xlink:href="#icon-muma"></use>
           </svg>
-        </div>
+        </router-link>
         <ul class="menu">
-            <li>菜单1</li>
-            <li>菜单2</li>
+            <li>
+              <router-link to="/doc">文档</router-link>
+            </li>
         </ul>
-        <span class="toggleAside" @click="toggleAside"></span>
+        <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleAside">
+          <use xlink:href="#icon-menu"></use>
+        </svg>
     </div>
 </template>
 
 <script lang="ts">
     import {inject, Ref} from 'vue'
     export default {
-        setup(){
-            const asideVisible = inject<Ref<boolean>>('asideVisible')
-            // console.log('topnav获取的 asideVisible 值为：'+ asideVisible.value)
-            const toggleAside = ()=> {
-                asideVisible.value = !asideVisible.value
-            }
-            return {toggleAside}
+      props: {
+        toggleMenuButtonVisible: {
+          type: Boolean,
+          default: false
         }
+      },
+      setup(){
+          const asideVisible = inject<Ref<boolean>>('asideVisible')
+          // console.log('topnav获取的 asideVisible 值为：'+ asideVisible.value)
+          const toggleAside = ()=> {
+              asideVisible.value = !asideVisible.value
+          }
+          return {toggleAside}
+      }
     }
 </script>
 
@@ -54,13 +63,15 @@
     flex-wrap: nowrap;
     > li {
       margin: 0 1em;
+      :hover {
+        color: #4f7d36;
+      }
     }
   }
   > .toggleAside {
       display: inline-block;
-      width: 24px;
-      height: 24px;
-      background: green;
+      width: 32px;
+      height: 32px;
       position:absolute;
       left: 16px;
       top: 50%;
