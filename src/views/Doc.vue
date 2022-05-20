@@ -82,30 +82,37 @@
 
 
 aside {
-  background: lightblue;
+  background: white;
   width: 150px;
-  padding: 16px;
+  padding: 16px 0;
   position: fixed;
   top: 0;
   left: 0;
   padding-top: 70px;
   height: 100%;
+  box-shadow: 5px 0 5px rgb(51 51 51 / 10%);
+  transition: .4s cubic-bezier(.68,.18,.53,.18) .1s;
+  z-index: 1;
   > h2 {
     margin-bottom: 4px;
+    margin-top: 16px;
+    padding: 0 16px;
   }
   > ol {
     > li {
-      padding: 4px 0;
+      > a {
+        display: block;
+        padding: 8px 16px;
+        text-decoration: none;
+      }
+      .router-link-active {
+        background: #eefff7;
+        border-right: 3px solid #42b983;
+      }
     }
   }
 }
 main {
   overflow: auto;
 }
-//   @media (max-width: 500px) {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     padding-top: 70px;
-//   }
 </style>

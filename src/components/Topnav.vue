@@ -69,14 +69,14 @@
     }
   }
   > .toggleAside {
-      display: inline-block;
+      display: none;
       width: 32px;
       height: 32px;
       position:absolute;
       left: 16px;
       top: 50%;
       transform: translateY(-50%);
-      display: none;
+      cursor: pointer;
   }
   @media(max-width:500px){
     > .menu{display: none;}
