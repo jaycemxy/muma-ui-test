@@ -1,6 +1,10 @@
 <template>
     <div class="topnav">
-        <div class="logo">LOGO</div>
+        <div class="logo">
+          <svg class="icon">
+            <use xlink:href="#icon-muma"></use>
+          </svg>
+        </div>
         <ul class="menu">
             <li>菜单1</li>
             <li>菜单2</li>
@@ -30,7 +34,8 @@
   left: 0;
   width: 100%;
   z-index: 10;
-  background: pink;
+  background-color: #ffffff;
+  box-shadow: 0 5px 5px rgb(51 51 51 / 10%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,6 +43,10 @@
   > .logo {
     max-width: 6em;
     margin-right: auto;
+    > svg {
+      height: 32px;
+      width: 32px;
+    }
   }
   > .menu {
     display: flex;
