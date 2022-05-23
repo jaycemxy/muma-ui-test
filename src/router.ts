@@ -9,9 +9,6 @@ import DocDemo from './components/DocDemo.vue'
 
 import { h } from 'vue'
 import Markdown from './components/Markdown.vue'
-// import Intro from './views/Intro.vue'
-// import GetStarted from './views/GetStarted.vue'
-// import Install from './views/Install.vue'
 const md = filename => h(Markdown, {path: `../markdown/${filename}.md`, key: filename})
 
 const history = createWebHashHistory()
