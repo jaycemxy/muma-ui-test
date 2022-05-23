@@ -1,5 +1,5 @@
 <template>
     <div>
-        Doc 默认页面
+        文档默认页面
     </div>
 </template>
