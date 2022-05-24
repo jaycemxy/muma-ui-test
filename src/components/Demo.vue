@@ -8,7 +8,7 @@
         <Button @click="codeVisible = !codeVisible">查看代码</Button>
     </div>
     <div class="demo-code" v-if="codeVisible">
-        <pre class="language-html" v-html="html"></pre>
+        <pre v-html="html"></pre>
     </div>
 </div>
 </template>
