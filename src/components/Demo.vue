@@ -5,16 +5,16 @@
         <component :is="component"/>
     </div>
     <div class="demo-actions">
-        <Button>查看代码</Button>
+        <Button @click="codeVisible = !codeVisible">查看代码</Button>
     </div>
-    <div class="demo-code">
+    <div class="demo-code" v-if="codeVisible">
         <pre class="language-html" v-html="html"></pre>
     </div>
 </div>
 </template>
 
 <script lang="ts">
-import { computed } from 'vue'
+import { computed,ref } from 'vue'
 import Button from '../lib/Button.vue'
 import 'prismjs'
 import 'prismjs/themes/prism-solarizedlight.css'
@@ -31,8 +31,9 @@ export default {
         const html = computed(()=>{
             return Prism.highlight(props.component.__sourceCode, Prism.languages.html, 'html')
         })
+        const codeVisible = ref(false)
         return {
-            Prism, html
+            Prism, html, codeVisible
         }
     }
 }
