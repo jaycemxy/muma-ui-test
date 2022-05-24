@@ -4,7 +4,7 @@
       <Topnav />
       <div class="banner">
           <h1>木马 UI</h1>
-          <h2>一个厉害的 UI 框架</h2>
+          <h2>基于Vue3.0的UI框架</h2>
           <p class="actions">
               <a href="https://github.com/jaycemxy">Github</a>
               <router-link to="/doc">开始</router-link>
@@ -19,14 +19,14 @@
           <use xlink:href="#icon-vue"></use>
         </svg>
         <h3>基于 Vue 3</h3>
-        <p>骄傲地使用了 Vue 3 Composition API</p>
+        <p>骄傲地使用了Vue3.0 Composition API</p>
       </li>
       <li>
         <svg class="icon">
           <use xlink:href="#icon-typescript"></use>
         </svg>
         <h3>基于 TypeScript</h3>
-        <p>源代码采用 TypeScript 书写（非严格检查）</p>
+        <p>源代码采用 TypeScript 书写</p>
       </li>
       <li>
         <svg class="icon">
@@ -52,8 +52,6 @@
 $border-radius: 16px;
 .topnavAndBanner {
   background: linear-gradient(45deg, rgba(218,230,224,1) 0%, rgba(220,218,218,1) 33%, rgba(231,211,207,1) 67%, rgba(235,215,203,1) 100%);
-  // border-bottom-left-radius: 50% 40px;
-  // border-bottom-right-radius: 50% 40px;
   clip-path: ellipse(80% 60% at 50% 40%);
 }
 .features {
