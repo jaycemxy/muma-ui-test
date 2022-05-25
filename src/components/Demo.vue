@@ -50,10 +50,9 @@ $border-color: #d9d9d9;
 .demo {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
-  max-width: 800px;
 
   @media(max-width: 500px){
-    width: 300px;
+    
   }
   > h2 {
     font-size: 18px;

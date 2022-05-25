@@ -55,8 +55,8 @@ $radius: 4px;
 
 .gulu-button {
     box-sizing: border-box;
-    height: 35px;
-    padding: 0 12px;
+    height: 40px;
+    margin: 8px;
     cursor: pointer;
     display: inline-flex;
     justify-content: center;
@@ -82,7 +82,7 @@ $radius: 4px;
         border: 0;
     }
 
-    // 主题theme
+    // 主题 theme
     &.gulu-theme-default {
         background: #fff;
         color: #4a4444;
@@ -147,7 +147,7 @@ $radius: 4px;
         }
     }
 
-    // 尺寸size
+    // 尺寸 size
     &.gulu-size-small {
         font-size: 12px;
         height: 20px;
@@ -162,10 +162,27 @@ $radius: 4px;
         padding: 0 16px;
     }
 
-    // 加载中
-    // .gulu-button-loading {
-    //     pointer-events: none;
-    // }
+    // 禁用 disabled
+    &.gulu-button {
+        &[disabled] {
+            cursor: not-allowed;
+            color: #4a4444;
+            background: #eeeeee;
+
+            &:hover {
+                border-color: #4a4444;
+            }
+        }
+    }
+    &.gulu-button-theme-link,
+    &.gulu-button-theme-text {
+        &[disabled] {
+            cursor: not-allowed;
+            color: #4a4444;
+        }
+    }
+
+    // 加载中 loading
     > .gulu-loadingIndicator {
         width: 14px;
         height: 14px;

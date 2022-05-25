@@ -4,7 +4,7 @@
 
 <template>
   <Button size="big" disabled>禁用按钮</Button>
-  <Button theme="success" disabled>禁用按钮</Button>
+  <Button theme="default" disabled>禁用按钮</Button>
 </template>
 
 <script lang="ts">

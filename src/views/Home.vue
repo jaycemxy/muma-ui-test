@@ -19,7 +19,7 @@
           <use xlink:href="#icon-vue"></use>
         </svg>
         <h3>基于 Vue 3</h3>
-        <p>骄傲地使用了Vue3.0 Composition API</p>
+        <p>使用了 Vue3.0 Composition API</p>
       </li>
       <li>
         <svg class="icon">
@@ -49,14 +49,14 @@
 </script>
 
 <style lang="scss" scoped>
-$border-radius: 16px;
 .topnavAndBanner {
   background: linear-gradient(45deg, rgba(218,230,224,1) 0%, rgba(220,218,218,1) 33%, rgba(231,211,207,1) 67%, rgba(235,215,203,1) 100%);
   clip-path: ellipse(80% 60% at 50% 40%);
 }
 .features {
-  margin: 64px auto;
-  // padding: 0 16px;
+  width: 400px;
+  margin: 0 auto;
+  padding: 0 10px;
   
   @media(min-width: 800px){
     width: 800px;
@@ -80,7 +80,6 @@ $border-radius: 16px;
     display: flex;
     flex-wrap: wrap;
     > li {
-      width: 400px;
       margin: 16px 0;
       display: grid;
       justify-content: start;
@@ -120,7 +119,7 @@ $border-radius: 16px;
       color: #fff;
       display: inline-block;
       padding: 4px 16px;
-      border-radius: $border-radius;
+      border-radius: 16px;
       &:hover {
         text-decoration: none;
         box-shadow: 0 5px 5px rgb(51 51 51 / 20%);
