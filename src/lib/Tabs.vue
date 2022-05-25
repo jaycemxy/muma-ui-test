@@ -46,7 +46,8 @@ export default {
         const defaults = context.slots.default()  // 用JS获取插槽内容
         // console.log(defaults[0].type === Tab)  检查子组件的类型是否为Tab
         defaults.forEach((tag)=>{
-            if(tag.type !== Tab){
+            // @ts-ignore
+            if(tag.type.name !== Tab.name){
                 throw new Error('Tabs子标签必须是Tab')
             }
         })
