@@ -4,8 +4,9 @@
     <div class="demo-component">
         <component :is="component"/>
     </div>
-    <div class="demo-actions">
-        <Button @click="codeVisible = !codeVisible">查看代码</Button>
+    <div class="demo-actions" @click="toggleCode">
+      {{ codeVisible ===true? '隐藏代码':'显示代码' }}
+        <!-- <Button @click="codeVisible = !codeVisible">查看代码</Button> -->
     </div>
     <div class="demo-code" v-if="codeVisible">
         <pre v-html="html"></pre>
@@ -28,12 +29,13 @@ export default {
         Button
     },
     setup(props){
+        const codeVisible = ref(false)
+        const toggleCode = ()=> codeVisible.value = !codeVisible.value
         const html = computed(()=>{
             return Prism.highlight(props.component.__sourceCode, Prism.languages.html, 'html')
         })
-        const codeVisible = ref(false)
         return {
-            Prism, html, codeVisible
+            Prism, html, codeVisible, toggleCode
         }
     }
 }
@@ -45,6 +47,7 @@ $border-color: #d9d9d9;
 .demo {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
+  max-width: 500px;
   > h2 {
     font-size: 20px;
     padding: 8px 16px;
@@ -54,8 +57,15 @@ $border-color: #d9d9d9;
     padding: 16px;
   }
   &-actions {
+    cursor: pointer;
+    text-align: center;
     padding: 8px 16px;
     border-top: 1px dashed $border-color;
+    color: #ccc;
+  }
+  &-actions:hover {
+    color: #91ceca;
+    background-color: #f9fafc;
   }
   &-code {
     padding: 8px 16px;
