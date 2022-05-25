@@ -44,12 +44,19 @@ export default {
 
 <style lang="scss" scoped>
 $border-color: #d9d9d9;
+.demo:hover {
+  box-shadow: 0 0 8px 0 rgb(232 237 250 / 60%), 0 2px 4px 0 rgb(232 237 250 / 50%);
+}
 .demo {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
-  max-width: 500px;
+  max-width: 800px;
+
+  @media(max-width: 500px){
+    width: 300px;
+  }
   > h2 {
-    font-size: 20px;
+    font-size: 18px;
     padding: 8px 16px;
     border-bottom: 1px solid $border-color;
   }
@@ -74,6 +81,7 @@ $border-color: #d9d9d9;
       line-height: 1.1;
       font-family: Consolas, 'Courier New', Courier, monospace;
       margin: 0;
+      overflow: auto;
     }
   }
 }

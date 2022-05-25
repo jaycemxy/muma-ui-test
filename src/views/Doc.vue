@@ -18,16 +18,16 @@
                 <h2>组件列表</h2>
                 <ol>
                     <li>
-                        <router-link to="/doc/switch">Switch组件</router-link>
+                        <router-link to="/doc/switch">Switch 开关</router-link>
                     </li>
                     <li>
-                        <router-link to="/doc/button">Button组件</router-link>
+                        <router-link to="/doc/button">Button 按钮</router-link>
                     </li>
                     <li>
-                        <router-link to="/doc/dialog">Dialog组件</router-link>
+                        <router-link to="/doc/dialog">Dialog 对话框</router-link>
                     </li>
                     <li>
-                        <router-link to="/doc/tabs">Tabs组件</router-link>
+                        <router-link to="/doc/tabs">Tabs 标签页</router-link>
                     </li>
                 </ol>
             </aside>
@@ -46,7 +46,6 @@
         components: {Topnav},
         setup(){
             const asideVisible = inject<Ref<boolean>>('asideVisible')
-            // console.log('doc aside 获取的 asideVisible 值为：'+ asideVisible.value)
             return {asideVisible}
         }
     }
@@ -76,14 +75,17 @@
   }
   > main {
     flex-grow: 1;
-    padding: 16px;
+    padding: 50px 90px;
+    @media(max-width: 500px){
+      padding: 40px 45px;
+    }
   }
 }
 
 
 aside {
   background: white;
-  width: 150px;
+  width: 200px;
   padding: 16px 0;
   position: fixed;
   top: 0;
@@ -94,15 +96,18 @@ aside {
   transition: .4s cubic-bezier(.68,.18,.53,.18) .1s;
   z-index: 1;
   > h2 {
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     margin-top: 16px;
-    padding: 0 16px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 700;
   }
   > ol {
     > li {
+      font-size: 14px;
       > a {
         display: block;
-        padding: 8px 16px;
+        padding: 12px 25px;
         text-decoration: none;
       }
       .router-link-active {
