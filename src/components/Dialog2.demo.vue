@@ -1,5 +1,5 @@
 <demo>
-一键打开 Dialog
+函数式调用（隐藏DOM结构，只暴露调用的API）
 </demo>
 
 <template>
@@ -20,8 +20,8 @@ export default {
   setup() {
     const showDialog = () => {
       openDialog({
-        title: h('strong', {}, '标题'),
-        content: '你好',
+        title: h('strong', {}, '加粗的标题'),
+        content: '对话框里的内容',
         ok() {
           console.log('ok')
         },

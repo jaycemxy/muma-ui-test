@@ -4,7 +4,6 @@
         <div class="gulu-dialog-wrapper">
             <div class="gulu-dialog">
                 <header>
-                    <!-- {{title}} -->
                     <slot name="title"/>
                     <span @click="close" class="gulu-dialog-close"></span>
                 </header>
@@ -70,15 +69,15 @@ export default {
 </script>
 
 <style lang="scss">
-$radius: 4px;
 $border-color: #d9d9d9;
 
 .gulu-dialog  {
-    background: white;
-    border-radius: $radius;
-    box-shadow: 0 0 3px fade_out(black, 0.5);
+    position: relative;
+    background: #fff;
+    margin: 100px auto 50px;
     min-width: 15em;
-    max-width: 90%;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px #0000004d;
     
     &-overlay {
         position: fixed;
@@ -95,6 +94,7 @@ $border-color: #d9d9d9;
         top: 50%;
         transform: translate(-50%, -50%);
         z-index: 11;
+        min-width: 300px;
     }
   > header {
     padding: 12px 16px;

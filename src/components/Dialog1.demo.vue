@@ -6,12 +6,11 @@
 <div>
     <Button @click="toggle">打开对话框</Button>
     <Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f2">
-        <template v-slot:content>
-            <strong>hi</strong>
-            <div>hello</div>
-        </template>
         <template v-slot:title>
-            <strong>加粗的标题</strong>
+            <div>标题</div>
+        </template>
+        <template v-slot:content>
+            <div>对话框里的内容</div>
         </template>
     </Dialog>
 </div>

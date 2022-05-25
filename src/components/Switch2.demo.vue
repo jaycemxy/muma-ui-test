@@ -1,5 +1,5 @@
 <demo>
-    支持 disabled
+    禁用状态 disabled
 </demo>
 
 <template>

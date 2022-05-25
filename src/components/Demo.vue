@@ -45,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 $border-color: #d9d9d9;
 .demo:hover {
-  box-shadow: 0 0 8px 0 rgb(232 237 250 / 60%), 0 2px 4px 0 rgb(232 237 250 / 50%);
+  box-shadow: 0 0 20px 0 rgb(232 237 250 / 60%), 0 2px 4px 0 rgb(232 237 250 / 50%);
 }
 .demo {
   border: 1px solid $border-color;
