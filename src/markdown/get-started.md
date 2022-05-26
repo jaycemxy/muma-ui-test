@@ -5,7 +5,7 @@
 然后在你的代码中写入下面的代码
 
 ```
-import {Button, Tabs, Switch, Dialog} from "muma-ui"
+import {Button, Tabs, Tab, Switch, Dialog, openDialog} from "muma-ui"
 ```
 
 ## Vue 单文件组件
@@ -19,7 +19,7 @@ import {Button, Tabs, Switch, Dialog} from "muma-ui"
 </template>
 
 <script>
-import {Button, Tabs, Switch, Dialog} from "muma-ui"
+import {Button, Tabs, Tab, Switch, Dialog, openDialog} from "muma-ui"
 
 export default {
   name: 'App',
